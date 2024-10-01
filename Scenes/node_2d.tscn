@@ -1,8 +1,7 @@
-[gd_scene load_steps=27 format=3 uid="uid://d0dqpb3ktk2ij"]
+[gd_scene load_steps=31 format=3 uid="uid://d0dqpb3ktk2ij"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_dp077"]
 [ext_resource type="Texture2D" uid="uid://cuvwmc4gb45a0" path="res://Sprites/background.png" id="2_ujmm0"]
-[ext_resource type="AudioStream" uid="uid://dph2ktqdkelst" path="res://Sounds/looming.wav" id="2_y2i4i"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="3_xeqbp"]
 [ext_resource type="Texture2D" uid="uid://b7egl7w2mjh1n" path="res://Frames/prplcat3.png" id="3_ybe8l"]
 [ext_resource type="Script" path="res://Scripts/progress_bar.gd" id="5_3fpsl"]
@@ -14,7 +13,11 @@
 [ext_resource type="Texture2D" uid="uid://djd2guly3oxbp" path="res://Sprites/white_musicOn.png" id="12_uw83d"]
 [ext_resource type="Texture2D" uid="uid://86rsb7tmjcqa" path="res://Sprites/input_dodge_down.png" id="13_5g4uu"]
 [ext_resource type="Texture2D" uid="uid://b8drw7wgxvkvw" path="res://Sprites/input_dodge_up.png" id="14_ul7yo"]
+[ext_resource type="AudioStream" uid="uid://dwcighet0okv2" path="res://Sounds/MUS/DrumLVL1loop.ogg" id="15_4fl6i"]
 [ext_resource type="Texture2D" uid="uid://cnqqtvlj4ysia" path="res://Sprites/input_shield.png" id="15_blxpr"]
+[ext_resource type="AudioStream" uid="uid://cod3nded54cdb" path="res://Sounds/MUS/neutraltempo.ogg" id="15_dprfj"]
+[ext_resource type="AudioStream" uid="uid://ghwpstiqquc0" path="res://Sounds/MUS/DrumLVL2loop.ogg" id="16_mask8"]
+[ext_resource type="AudioStream" uid="uid://b2maslugsnlva" path="res://Sounds/MUS/BassLVL1loop.ogg" id="17_jnhqt"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_i4e32"]
 line_spacing = 0.0
@@ -82,6 +85,65 @@ size = Vector2(71.5, 83)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1b1nq"]
 texture = ExtResource("12_uw83d")
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_3x82e"]
+clip_count = 4
+clip_0/name = &"Tempo"
+clip_0/stream = ExtResource("15_dprfj")
+clip_0/auto_advance = 0
+clip_1/name = &"DRUM1"
+clip_1/stream = ExtResource("15_4fl6i")
+clip_1/auto_advance = 0
+clip_2/name = &"DRUM2"
+clip_2/stream = ExtResource("16_mask8")
+clip_2/auto_advance = 0
+clip_3/name = &"Bass1"
+clip_3/stream = ExtResource("17_jnhqt")
+clip_3/auto_advance = 0
+_transitions = {
+Vector2i(0, 0): {
+"fade_beats": 1,
+"fade_mode": 4,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(0, 1): {
+"fade_beats": 1,
+"fade_mode": 4,
+"from_time": 2,
+"to_time": 0
+},
+Vector2i(1, 0): {
+"fade_beats": 1,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(1, 2): {
+"fade_beats": 1,
+"fade_mode": 3,
+"from_time": 2,
+"to_time": 0
+},
+Vector2i(2, 0): {
+"fade_beats": 1,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(2, 3): {
+"fade_beats": 1,
+"fade_mode": 4,
+"from_time": 1,
+"to_time": 0
+},
+Vector2i(3, 0): {
+"fade_beats": 1,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+}
+}
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_dp077")
@@ -236,8 +298,10 @@ script = ExtResource("6_w8jrg")
 script = ExtResource("6_oevdq")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="RythmBar"]
-stream = ExtResource("2_y2i4i")
-volume_db = -16.745
+stream = SubResource("AudioStreamInteractive_3x82e")
+volume_db = -6.531
+max_polyphony = 2
+bus = &"MUS"
 
 [node name="SubBeatTimer" type="Timer" parent="RythmBar"]
 

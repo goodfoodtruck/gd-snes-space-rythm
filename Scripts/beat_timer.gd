@@ -2,7 +2,7 @@ extends Timer
 
 @onready var sub_beat_timer = get_parent().get_node("SubBeatTimer")
 
-@export var bpm: int = 120
+@export var bpm: int = 110
 
 func _ready() -> void:
 	# On synchronise le timer avec le bpm
