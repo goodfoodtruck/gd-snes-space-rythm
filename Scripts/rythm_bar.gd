@@ -7,6 +7,7 @@ extends Panel
 
 var last_key_pressed = ''
 var queue = []
+var combo_count = 0
 
 func _ready():
 	audio.play()
@@ -26,7 +27,6 @@ func _on_sub_beat_timer_timeout(): # À la fin de la période d'input valide
 	else:
 		queue.append(last_key_pressed)
 		last_key_pressed = ''
-	print(queue)
 	check_combo()
 
 
@@ -52,6 +52,7 @@ func handle_input(key: String):
 	if beat_timer.time_left <= threshold * 3 and beat_timer.time_left >= threshold:
 		# input pas sur le beat
 		queue.clear()
+		combo_count = 0
 	else:
 		# success
 		input_key_instance.set_is_success()
@@ -68,11 +69,17 @@ func blink():
 
 
 func check_combo():
-	# TODO increment combo for fever
-	match queue:
-		['A', 'X', 'A', 'X']: player.fire_rocket(); queue.clear()
-		['X', 'A', 'A', 'X']: player.activate_shield(); queue.clear()
-		['A', 'A', 'A', 'X']: player.dodge_up(); queue.clear()
-		['A', 'A', 'X', 'A']: player.dodge_down(); queue.clear()
+	var combo_actions = {
+		['A', 'X', 'A', 'X']: player.fire_rocket,
+		['X', 'A', 'A', 'X']: player.activate_shield,
+		['A', 'A', 'A', 'X']: player.dodge_up,
+		['A', 'A', 'X', 'A']: player.dodge_down
+	}
+	
+	if queue in combo_actions:
+		combo_actions[queue].call()
+		queue.clear()
+		combo_count += 1
+
 	if len(queue) >= 4:
 		queue.clear()
