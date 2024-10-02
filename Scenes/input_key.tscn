@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://c41g80u7m38gk"]
+[gd_scene load_steps=5 format=3 uid="uid://c41g80u7m38gk"]
 
 [ext_resource type="Texture2D" uid="uid://b7kp34l6jddug" path="res://Sprites/input_success.png" id="1_lhd27"]
 [ext_resource type="Script" path="res://Scripts/input_key.gd" id="2_f4ya4"]
 [ext_resource type="Script" path="res://Scripts/input_sound.gd" id="3_4tvm1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_y2ee2"]
+font_size = 9
 
 [node name="InputKey" type="Sprite2D"]
 position = Vector2(154, 78)
@@ -14,3 +17,11 @@ script = ExtResource("2_f4ya4")
 
 [node name="InputSound" type="AudioStreamPlayer" parent="."]
 script = ExtResource("3_4tvm1")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -12.5
+offset_top = -20.8333
+offset_right = 15.5
+offset_bottom = -6.83333
+text = "great !"
+label_settings = SubResource("LabelSettings_y2ee2")

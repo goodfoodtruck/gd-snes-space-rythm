@@ -1,6 +1,7 @@
 extends Sprite2D
 
 @onready var input_sound = $InputSound
+@onready var label = $Label
 
 @export var fade_time: float = 0.5  # Time in seconds for the fade-out
 @export var fall_distance: float = 50  # Distance to fall
@@ -31,6 +32,7 @@ func _ready():
 	
 	if !is_success:
 		texture = load("res://Sprites/input_failed.png")
+		label.text = "miss"
 		sound_key_method += "_failed"
 	
 	input_sound.call(sound_key_method)
