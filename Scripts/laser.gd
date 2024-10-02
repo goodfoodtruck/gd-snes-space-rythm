@@ -8,7 +8,7 @@ func _ready():
 
 func _on_body_entered(body):
 	if body is Player:
-		body.take_damage(100)
+		body.take_damage(50)
 		queue_free()
 
 

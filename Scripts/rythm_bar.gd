@@ -19,6 +19,7 @@ func _ready():
 
 
 func _on_beat_timer_timeout(): # S'éxécute à chaque beat
+	$Label.text = str(combo_count) if combo_count != 120 else "0"
 	blink()
 	sub_beat_timer.start()
 	if need_music_switch:
@@ -92,7 +93,7 @@ func check_combo():
 
 func reset_or_increment_combo(increment: bool):
 	if increment:
-		combo_count = 1 if combo_count == 100 else combo_count + 1
+		combo_count = 1 if combo_count == 120 else combo_count + 1
 	else:
 		combo_count = 0
 	

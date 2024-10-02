@@ -36,9 +36,9 @@ script = ExtResource("1_xapqj")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 61.0
-offset_top = 117.0
-offset_right = 292.0
-offset_bottom = 134.0
+offset_left = 20.0
+offset_top = 116.0
+offset_right = 331.0
+offset_bottom = 133.0
 text = "Press A or B or X or Y to start the game !"
 label_settings = SubResource("LabelSettings_p6xj4")

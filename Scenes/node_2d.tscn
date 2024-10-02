@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://d0dqpb3ktk2ij"]
+[gd_scene load_steps=34 format=3 uid="uid://d0dqpb3ktk2ij"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_dp077"]
 [ext_resource type="Texture2D" uid="uid://dng8xnh5vu3a6" path="res://Sprites/background.png" id="2_ujmm0"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="6_7ob1a"]
 [ext_resource type="Script" path="res://Scripts/beat_timer.gd" id="6_oevdq"]
 [ext_resource type="Script" path="res://Scripts/rythm_bar.gd" id="6_w8jrg"]
+[ext_resource type="Texture2D" uid="uid://bwjlce7y1npde" path="res://Sprites/crystal_idle.png" id="11_32w88"]
 [ext_resource type="Texture2D" uid="uid://cw88ujlahhjrw" path="res://Sprites/input_attack.png" id="12_kas7k"]
 [ext_resource type="Texture2D" uid="uid://djd2guly3oxbp" path="res://Sprites/white_musicOn.png" id="12_uw83d"]
 [ext_resource type="Texture2D" uid="uid://86rsb7tmjcqa" path="res://Sprites/input_dodge_down.png" id="13_5g4uu"]
@@ -58,8 +59,44 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_arppl"]
+atlas = ExtResource("11_32w88")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7cgyc"]
+atlas = ExtResource("11_32w88")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eof2w"]
+atlas = ExtResource("11_32w88")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3yvgs"]
+atlas = ExtResource("11_32w88")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jglgi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_arppl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7cgyc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eof2w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3yvgs")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t8ley"]
-size = Vector2(71.5, 83)
+size = Vector2(67.375, 133)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1b1nq"]
 texture = ExtResource("12_uw83d")
@@ -139,27 +176,29 @@ offset_bottom = 222.0
 
 [node name="Label" type="Label" parent="Control"]
 layout_mode = 0
-offset_left = 42.0
-offset_top = -2.0
-offset_right = 116.0
-offset_bottom = 10.0
+offset_left = 27.0
+offset_top = -1.0
+offset_right = 112.0
+offset_bottom = 11.0
 text = "= launch rocket"
 label_settings = SubResource("LabelSettings_i4e32")
 uppercase = true
 
 [node name="TextureRect" type="TextureRect" parent="Control"]
 layout_mode = 0
-offset_right = 76.0
-offset_bottom = 16.0
+offset_left = -15.0
+offset_top = 1.0
+offset_right = 61.0
+offset_bottom = 17.0
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("12_kas7k")
 stretch_mode = 2
 
 [node name="TextureRect2" type="TextureRect" parent="Control"]
 layout_mode = 0
-offset_left = 7.0
+offset_left = -9.0
 offset_top = 210.0
-offset_right = 83.0
+offset_right = 67.0
 offset_bottom = 226.0
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("13_5g4uu")
@@ -167,9 +206,9 @@ stretch_mode = 2
 
 [node name="TextureRect3" type="TextureRect" parent="Control"]
 layout_mode = 0
-offset_left = 125.0
+offset_left = 110.0
 offset_top = 210.0
-offset_right = 201.0
+offset_right = 186.0
 offset_bottom = 226.0
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("14_ul7yo")
@@ -196,20 +235,20 @@ uppercase = true
 
 [node name="Label3" type="Label" parent="Control"]
 layout_mode = 0
-offset_left = 48.0
-offset_top = 208.0
-offset_right = 122.0
-offset_bottom = 220.0
+offset_left = 32.0
+offset_top = 209.0
+offset_right = 106.0
+offset_bottom = 221.0
 text = "= dodge down"
 label_settings = SubResource("LabelSettings_i4e32")
 uppercase = true
 
 [node name="Label4" type="Label" parent="Control"]
 layout_mode = 0
-offset_left = 166.0
-offset_top = 208.0
-offset_right = 240.0
-offset_bottom = 220.0
+offset_left = 151.0
+offset_top = 209.0
+offset_right = 225.0
+offset_bottom = 221.0
 text = "= dodge  up"
 label_settings = SubResource("LabelSettings_i4e32")
 uppercase = true
@@ -241,11 +280,13 @@ autoplay = "default"
 frame = 3
 frame_progress = 1.0
 
-[node name="PlayerSound" type="AudioStreamPlayer" parent="Player"]
+[node name="ShieldSound" type="AudioStreamPlayer" parent="Player"]
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="Player"]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="DamageSound" type="AudioStreamPlayer" parent="Player"]
+
+[node name="RocketSound" type="AudioStreamPlayer" parent="Player"]
+
+[node name="DodgeSound" type="AudioStreamPlayer" parent="Player"]
 
 [node name="Enemy" type="CharacterBody2D" parent="."]
 position = Vector2(294, 104)
@@ -256,11 +297,13 @@ wait_time = 3.5
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemy"]
 position = Vector2(1.90735e-06, 1.90735e-06)
-scale = Vector2(5, 5)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_jglgi")
 autoplay = "default"
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
+position = Vector2(0.6875, 0)
 shape = SubResource("RectangleShape2D_t8ley")
 
 [node name="RythmBar" type="Panel" parent="."]
@@ -282,6 +325,14 @@ bus = &"MUS"
 [node name="SubBeatTimer" type="Timer" parent="RythmBar"]
 
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="RythmBar"]
+
+[node name="Label" type="Label" parent="RythmBar"]
+layout_mode = 0
+offset_left = -24.0
+offset_top = 5.0
+offset_right = -3.0
+offset_bottom = 28.0
+text = "12"
 
 [connection signal="timeout" from="Enemy/EnemyTimer" to="Enemy" method="_on_enemy_timer_timeout"]
 [connection signal="timeout" from="RythmBar/BeatTimer" to="RythmBar" method="_on_beat_timer_timeout"]

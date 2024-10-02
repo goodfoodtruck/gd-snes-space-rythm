@@ -12,3 +12,7 @@ func take_damage(damage: int):
 		health -= damage
 	else:
 		health -= damage / 2
+	
+	for i in range(4):
+		visible = !visible
+		await get_tree().create_timer(0.15).timeout
