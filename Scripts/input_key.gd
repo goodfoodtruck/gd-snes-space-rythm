@@ -19,15 +19,15 @@ func _ready():
 		'X':
 			region_rect = Rect2(32, 0, 16, 16)
 			position += Vector2(0, -16)
-			sound_key_method = "play_sound_a"
+			sound_key_method = "play_sound_x"
 		'B':
 			region_rect = Rect2(16, 0, 16, 16)
 			position += Vector2(0, 16)
-			sound_key_method = "play_sound_a"
+			sound_key_method = "play_sound_b"
 		'Y':
 			region_rect = Rect2(48, 0, 16, 16)
 			position += Vector2(-16, 0)
-			sound_key_method = "play_sound_a"
+			sound_key_method = "play_sound_y"
 
 	if !is_success:
 		texture = load("res://Sprites/input_failed.png")
