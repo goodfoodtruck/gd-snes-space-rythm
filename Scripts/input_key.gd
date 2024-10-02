@@ -28,12 +28,13 @@ func _ready():
 			region_rect = Rect2(48, 0, 16, 16)
 			position += Vector2(-16, 0)
 			sound_key_method = "play_sound_y"
-
+	
 	if !is_success:
 		texture = load("res://Sprites/input_failed.png")
-	else:
-		input_sound.call(sound_key_method)
-
+		sound_key_method += "_failed"
+	
+	input_sound.call(sound_key_method)
+	
 	# Start the effect when the scene is ready
 	modulate = Color(1, 1, 1, 1)  # Make sure the sprite is fully visible
 	fall_and_fade()
@@ -43,7 +44,7 @@ func fall_and_fade():
 	# Animate the fall
 	var fall_tween = create_tween()
 	fall_tween.tween_property(self, "scale", scale - scale /2, fade_time)
-
+	
 	# Animate the fade-out
 	var fade_tween = create_tween()
 	fade_tween.tween_property(self, "modulate:a", 0, fade_time)
