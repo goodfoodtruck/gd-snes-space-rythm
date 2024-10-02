@@ -1,9 +1,8 @@
-[gd_scene load_steps=32 format=3 uid="uid://d0dqpb3ktk2ij"]
+[gd_scene load_steps=28 format=3 uid="uid://d0dqpb3ktk2ij"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_dp077"]
 [ext_resource type="Texture2D" uid="uid://dng8xnh5vu3a6" path="res://Sprites/background.png" id="2_ujmm0"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="3_xeqbp"]
-[ext_resource type="Texture2D" uid="uid://b7egl7w2mjh1n" path="res://Frames/prplcat3.png" id="3_ybe8l"]
 [ext_resource type="Script" path="res://Scripts/progress_bar.gd" id="5_3fpsl"]
 [ext_resource type="Texture2D" uid="uid://ddmrj6psaiir8" path="res://Sprites/idle.png" id="5_uvjbo"]
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="6_7ob1a"]
@@ -57,28 +56,6 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 5.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qjv1c"]
-atlas = ExtResource("3_ybe8l")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ieudl"]
-atlas = ExtResource("3_ybe8l")
-region = Rect2(32, 0, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_t77k7"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qjv1c")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ieudl")
-}],
-"loop": true,
-"name": &"default",
-"speed": 3.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t8ley"]
@@ -266,6 +243,10 @@ frame_progress = 1.0
 
 [node name="PlayerSound" type="AudioStreamPlayer" parent="Player"]
 
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Player"]
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="Enemy" type="CharacterBody2D" parent="."]
 position = Vector2(294, 104)
 script = ExtResource("6_7ob1a")
@@ -276,10 +257,7 @@ wait_time = 3.5
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemy"]
 position = Vector2(1.90735e-06, 1.90735e-06)
 scale = Vector2(5, 5)
-sprite_frames = SubResource("SpriteFrames_t77k7")
 autoplay = "default"
-frame = 1
-frame_progress = 1.0
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
