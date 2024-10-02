@@ -2,8 +2,8 @@ extends CharacterBody2D
 
 class_name Entity
 
-var max_health: int = 400
-var health: int = 400
+var max_health: int = 1000
+var health: int = 1000
 var has_shield: bool = false
 
 

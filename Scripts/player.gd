@@ -4,6 +4,8 @@ class_name Player
 
 signal health_changed
 
+@onready var player_sound = $PlayerSound
+
 var initial_position = position
 var queue = []
 

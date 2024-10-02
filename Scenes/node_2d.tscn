@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://d0dqpb3ktk2ij"]
+[gd_scene load_steps=32 format=3 uid="uid://d0dqpb3ktk2ij"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_dp077"]
 [ext_resource type="Texture2D" uid="uid://cuvwmc4gb45a0" path="res://Sprites/background.png" id="2_ujmm0"]
@@ -13,11 +13,12 @@
 [ext_resource type="Texture2D" uid="uid://djd2guly3oxbp" path="res://Sprites/white_musicOn.png" id="12_uw83d"]
 [ext_resource type="Texture2D" uid="uid://86rsb7tmjcqa" path="res://Sprites/input_dodge_down.png" id="13_5g4uu"]
 [ext_resource type="Texture2D" uid="uid://b8drw7wgxvkvw" path="res://Sprites/input_dodge_up.png" id="14_ul7yo"]
-[ext_resource type="AudioStream" uid="uid://dwcighet0okv2" path="res://Sounds/MUS/DrumLVL1loop.ogg" id="15_4fl6i"]
 [ext_resource type="Texture2D" uid="uid://cnqqtvlj4ysia" path="res://Sprites/input_shield.png" id="15_blxpr"]
 [ext_resource type="AudioStream" uid="uid://cod3nded54cdb" path="res://Sounds/MUS/neutraltempo.ogg" id="15_dprfj"]
-[ext_resource type="AudioStream" uid="uid://ghwpstiqquc0" path="res://Sounds/MUS/DrumLVL2loop.ogg" id="16_mask8"]
-[ext_resource type="AudioStream" uid="uid://b2maslugsnlva" path="res://Sounds/MUS/BassLVL1loop.ogg" id="17_jnhqt"]
+[ext_resource type="AudioStream" uid="uid://cyqrmlhkmb7l6" path="res://Sounds/MUS/Niveau1.ogg" id="16_rhwnk"]
+[ext_resource type="AudioStream" uid="uid://borpa0fuffuya" path="res://Sounds/MUS/Niveau2.ogg" id="17_4ogia"]
+[ext_resource type="AudioStream" uid="uid://bvvkvg5m0sfgf" path="res://Sounds/MUS/Niveau3.ogg" id="18_rd7ft"]
+[ext_resource type="AudioStream" uid="uid://dard0mm7vis6p" path="res://Sounds/MUS/niveau4.ogg" id="19_nb4wp"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_i4e32"]
 line_spacing = 0.0
@@ -87,26 +88,23 @@ size = Vector2(71.5, 83)
 texture = ExtResource("12_uw83d")
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_3x82e"]
-clip_count = 4
+clip_count = 5
 clip_0/name = &"Tempo"
 clip_0/stream = ExtResource("15_dprfj")
 clip_0/auto_advance = 0
-clip_1/name = &"DRUM1"
-clip_1/stream = ExtResource("15_4fl6i")
+clip_1/name = &"Niveau1"
+clip_1/stream = ExtResource("16_rhwnk")
 clip_1/auto_advance = 0
-clip_2/name = &"DRUM2"
-clip_2/stream = ExtResource("16_mask8")
+clip_2/name = &"Niveau2"
+clip_2/stream = ExtResource("17_4ogia")
 clip_2/auto_advance = 0
-clip_3/name = &"Bass1"
-clip_3/stream = ExtResource("17_jnhqt")
+clip_3/name = &"Niveau3"
+clip_3/stream = ExtResource("18_rd7ft")
 clip_3/auto_advance = 0
+clip_4/name = &"Niveau4"
+clip_4/stream = ExtResource("19_nb4wp")
+clip_4/auto_advance = 0
 _transitions = {
-Vector2i(0, 0): {
-"fade_beats": 1,
-"fade_mode": 4,
-"from_time": 0,
-"to_time": 1
-},
 Vector2i(0, 1): {
 "fade_beats": 1,
 "fade_mode": 4,
@@ -267,6 +265,8 @@ autoplay = "default"
 frame = 3
 frame_progress = 1.0
 
+[node name="PlayerSound" type="AudioStreamPlayer" parent="Player"]
+
 [node name="Enemy" type="CharacterBody2D" parent="."]
 position = Vector2(294, 104)
 script = ExtResource("6_7ob1a")
@@ -297,13 +297,14 @@ script = ExtResource("6_w8jrg")
 [node name="BeatTimer" type="Timer" parent="RythmBar"]
 script = ExtResource("6_oevdq")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="RythmBar"]
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="RythmBar"]
 stream = SubResource("AudioStreamInteractive_3x82e")
-volume_db = -6.531
 max_polyphony = 2
 bus = &"MUS"
 
 [node name="SubBeatTimer" type="Timer" parent="RythmBar"]
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="RythmBar"]
 
 [connection signal="timeout" from="Enemy/EnemyTimer" to="Enemy" method="_on_enemy_timer_timeout"]
 [connection signal="timeout" from="RythmBar/BeatTimer" to="RythmBar" method="_on_beat_timer_timeout"]
