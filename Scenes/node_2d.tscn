@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://d0dqpb3ktk2ij"]
+[gd_scene load_steps=40 format=3 uid="uid://d0dqpb3ktk2ij"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_dp077"]
 [ext_resource type="Texture2D" uid="uid://dng8xnh5vu3a6" path="res://Sprites/background.png" id="2_ujmm0"]
@@ -8,8 +8,13 @@
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="6_7ob1a"]
 [ext_resource type="Script" path="res://Scripts/beat_timer.gd" id="6_oevdq"]
 [ext_resource type="Script" path="res://Scripts/rythm_bar.gd" id="6_w8jrg"]
+[ext_resource type="AudioStream" uid="uid://dbybfm2cj86gs" path="res://Sounds/SFX/damage_taken_player1.ogg" id="10_3efxs"]
+[ext_resource type="AudioStream" uid="uid://b6ov1nqq74qna" path="res://Sounds/SFX/shield_up.ogg" id="10_ibmis"]
 [ext_resource type="Texture2D" uid="uid://bwjlce7y1npde" path="res://Sprites/crystal_idle.png" id="11_32w88"]
+[ext_resource type="AudioStream" uid="uid://cdgdeb6h0h2u1" path="res://Sounds/SFX/damage_taken_enemy2.ogg" id="11_aw6ni"]
+[ext_resource type="AudioStream" uid="uid://gf47h3bsuppc" path="res://Sounds/SFX/rocket_fire.ogg" id="11_qpntq"]
 [ext_resource type="Texture2D" uid="uid://cw88ujlahhjrw" path="res://Sprites/input_attack.png" id="12_kas7k"]
+[ext_resource type="AudioStream" uid="uid://di8v5tb2wjub1" path="res://Sounds/SFX/move_up_down_1.ogg" id="12_snark"]
 [ext_resource type="Texture2D" uid="uid://djd2guly3oxbp" path="res://Sprites/white_musicOn.png" id="12_uw83d"]
 [ext_resource type="Texture2D" uid="uid://86rsb7tmjcqa" path="res://Sprites/input_dodge_down.png" id="13_5g4uu"]
 [ext_resource type="Texture2D" uid="uid://b8drw7wgxvkvw" path="res://Sprites/input_dodge_up.png" id="14_ul7yo"]
@@ -17,6 +22,7 @@
 [ext_resource type="AudioStream" uid="uid://cod3nded54cdb" path="res://Sounds/MUS/neutraltempo.ogg" id="15_dprfj"]
 [ext_resource type="AudioStream" uid="uid://cyqrmlhkmb7l6" path="res://Sounds/MUS/Niveau1.ogg" id="16_rhwnk"]
 [ext_resource type="AudioStream" uid="uid://borpa0fuffuya" path="res://Sounds/MUS/Niveau2.ogg" id="17_4ogia"]
+[ext_resource type="AudioStream" uid="uid://cmawu4s8vojmj" path="res://Sounds/SFX/enemy_charge_fire.ogg" id="17_562wh"]
 [ext_resource type="AudioStream" uid="uid://bvvkvg5m0sfgf" path="res://Sounds/MUS/Niveau3.ogg" id="18_rd7ft"]
 [ext_resource type="AudioStream" uid="uid://dard0mm7vis6p" path="res://Sounds/MUS/niveau4.ogg" id="19_nb4wp"]
 
@@ -96,7 +102,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t8ley"]
-size = Vector2(67.375, 133)
+size = Vector2(66, 133)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1b1nq"]
 texture = ExtResource("12_uw83d")
@@ -176,79 +182,80 @@ offset_bottom = 222.0
 
 [node name="Label" type="Label" parent="Control"]
 layout_mode = 0
-offset_left = 27.0
-offset_top = -1.0
-offset_right = 112.0
-offset_bottom = 11.0
+offset_left = -21.0
+offset_top = 4.0
+offset_right = 64.0
+offset_bottom = 16.0
 text = "= launch rocket"
 label_settings = SubResource("LabelSettings_i4e32")
 uppercase = true
 
 [node name="TextureRect" type="TextureRect" parent="Control"]
 layout_mode = 0
-offset_left = -15.0
-offset_top = 1.0
-offset_right = 61.0
-offset_bottom = 17.0
-scale = Vector2(0.5, 0.5)
+offset_left = -93.0
+offset_top = 2.0
+offset_right = -17.0
+offset_bottom = 18.0
+scale = Vector2(0.9, 0.9)
 texture = ExtResource("12_kas7k")
 stretch_mode = 2
 
 [node name="TextureRect2" type="TextureRect" parent="Control"]
 layout_mode = 0
-offset_left = -9.0
-offset_top = 210.0
-offset_right = 67.0
-offset_bottom = 226.0
-scale = Vector2(0.5, 0.5)
+offset_left = -94.0
+offset_top = 202.0
+offset_right = -18.0
+offset_bottom = 218.0
+scale = Vector2(0.9, 0.9)
 texture = ExtResource("13_5g4uu")
 stretch_mode = 2
 
 [node name="TextureRect3" type="TextureRect" parent="Control"]
 layout_mode = 0
-offset_left = 110.0
-offset_top = 210.0
-offset_right = 186.0
-offset_bottom = 226.0
-scale = Vector2(0.5, 0.5)
+offset_left = 66.0
+offset_top = 202.0
+offset_right = 142.0
+offset_bottom = 218.0
+scale = Vector2(0.9, 0.9)
 texture = ExtResource("14_ul7yo")
 stretch_mode = 2
 
 [node name="TextureRect4" type="TextureRect" parent="Control"]
 layout_mode = 0
-offset_left = 127.0
-offset_right = 203.0
-offset_bottom = 16.0
-scale = Vector2(0.5, 0.5)
+offset_left = 78.0
+offset_top = 2.0
+offset_right = 154.0
+offset_bottom = 18.0
+scale = Vector2(0.9, 0.9)
 texture = ExtResource("15_blxpr")
 stretch_mode = 2
 
 [node name="Label2" type="Label" parent="Control"]
 layout_mode = 0
-offset_left = 168.0
-offset_top = -2.0
-offset_right = 242.0
-offset_bottom = 10.0
+offset_left = 150.0
+offset_top = 4.0
+offset_right = 224.0
+offset_bottom = 16.0
 text = "= shield"
 label_settings = SubResource("LabelSettings_i4e32")
 uppercase = true
 
 [node name="Label3" type="Label" parent="Control"]
 layout_mode = 0
-offset_left = 32.0
-offset_top = 209.0
-offset_right = 106.0
-offset_bottom = 221.0
+offset_left = -22.0
+offset_top = 204.0
+offset_right = 52.0
+offset_bottom = 216.0
 text = "= dodge down"
 label_settings = SubResource("LabelSettings_i4e32")
 uppercase = true
 
 [node name="Label4" type="Label" parent="Control"]
 layout_mode = 0
-offset_left = 151.0
-offset_top = 209.0
-offset_right = 225.0
-offset_bottom = 221.0
+offset_left = 138.0
+offset_top = 204.0
+offset_right = 212.0
+offset_bottom = 216.0
 text = "= dodge  up"
 label_settings = SubResource("LabelSettings_i4e32")
 uppercase = true
@@ -281,19 +288,23 @@ frame = 3
 frame_progress = 1.0
 
 [node name="ShieldSound" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("10_ibmis")
 
 [node name="DamageSound" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("10_3efxs")
 
 [node name="RocketSound" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("11_qpntq")
 
 [node name="DodgeSound" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("12_snark")
 
 [node name="Enemy" type="CharacterBody2D" parent="."]
-position = Vector2(294, 104)
+position = Vector2(309, 104)
 script = ExtResource("6_7ob1a")
 
 [node name="EnemyTimer" type="Timer" parent="Enemy"]
-wait_time = 3.5
+wait_time = 8.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemy"]
 position = Vector2(1.90735e-06, 1.90735e-06)
@@ -303,8 +314,13 @@ autoplay = "default"
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
-position = Vector2(0.6875, 0)
 shape = SubResource("RectangleShape2D_t8ley")
+
+[node name="DamageSound" type="AudioStreamPlayer" parent="Enemy"]
+stream = ExtResource("11_aw6ni")
+
+[node name="ChargeSound" type="AudioStreamPlayer" parent="Enemy"]
+stream = ExtResource("17_562wh")
 
 [node name="RythmBar" type="Panel" parent="."]
 offset_left = 313.0

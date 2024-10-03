@@ -1,12 +1,50 @@
-[gd_scene load_steps=6 format=3 uid="uid://bhnvti45lxcrs"]
+[gd_scene load_steps=13 format=3 uid="uid://bhnvti45lxcrs"]
 
 [ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_qav3q"]
 [ext_resource type="Script" path="res://Scripts/main_menu_btn.gd" id="1_xapqj"]
 [ext_resource type="Texture2D" uid="uid://hmd4se1e3c65" path="res://Sprites/start_o.png" id="2_eqo2r"]
 [ext_resource type="Texture2D" uid="uid://dng8xnh5vu3a6" path="res://Sprites/background.png" id="4_3cpgr"]
+[ext_resource type="Texture2D" uid="uid://db0w00k55uync" path="res://Sprites/titre.png" id="5_oflci"]
+[ext_resource type="Texture2D" uid="uid://bdgndfhj4x53q" path="res://Sprites/ANIM_FIRE_1.png" id="6_bmijs"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_p6xj4"]
 font_size = 12
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ugpc8"]
+atlas = ExtResource("6_bmijs")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1kyy5"]
+atlas = ExtResource("6_bmijs")
+region = Rect2(64, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bxm2h"]
+atlas = ExtResource("6_bmijs")
+region = Rect2(128, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e4her"]
+atlas = ExtResource("6_bmijs")
+region = Rect2(192, 0, 64, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ry13o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ugpc8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1kyy5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bxm2h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e4her")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -26,10 +64,10 @@ texture = ExtResource("4_3cpgr")
 
 [node name="TextureButton" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 121.0
-offset_top = 136.0
-offset_right = 232.0
-offset_bottom = 173.0
+offset_left = 134.0
+offset_top = 166.0
+offset_right = 221.0
+offset_bottom = 195.0
 texture_normal = ExtResource("2_eqo2r")
 stretch_mode = 0
 script = ExtResource("1_xapqj")
@@ -37,8 +75,20 @@ script = ExtResource("1_xapqj")
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
 offset_left = 20.0
-offset_top = 116.0
+offset_top = 138.0
 offset_right = 331.0
-offset_bottom = 133.0
+offset_bottom = 155.0
 text = "Press A or B or X or Y to start the game !"
 label_settings = SubResource("LabelSettings_p6xj4")
+
+[node name="Titre" type="Sprite2D" parent="."]
+position = Vector2(177, 60)
+scale = Vector2(5, 5)
+texture = ExtResource("5_oflci")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(177, 118)
+scale = Vector2(1.71875, 1.71875)
+sprite_frames = SubResource("SpriteFrames_ry13o")
+autoplay = "default"
+speed_scale = 2.0

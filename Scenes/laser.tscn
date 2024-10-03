@@ -1,62 +1,36 @@
-[gd_scene load_steps=12 format=3 uid="uid://bcmfqttvywd4"]
+[gd_scene load_steps=8 format=3 uid="uid://bcmfqttvywd4"]
 
 [ext_resource type="Script" path="res://Scripts/laser.gd" id="1_u50h0"]
-[ext_resource type="Texture2D" uid="uid://qfbehfsw2yhv" path="res://Sprites/rocket.png" id="2_c162e"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h08k7"]
-radius = 12.0416
+radius = 22.0227
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0jg16"]
-atlas = ExtResource("2_c162e")
-region = Rect2(0, 0, 32, 16)
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_u5jx3"]
+load_path = "res://.godot/imported/laser.png-1c813569fc3112b060177dd4fc3f7145.ctex"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_q4lal"]
-atlas = ExtResource("2_c162e")
-region = Rect2(32, 0, 32, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_r3ux5"]
+atlas = SubResource("CompressedTexture2D_u5jx3")
+region = Rect2(0, 0, 48, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2unpv"]
-atlas = ExtResource("2_c162e")
-region = Rect2(64, 0, 32, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_8hk5f"]
+atlas = SubResource("CompressedTexture2D_u5jx3")
+region = Rect2(48, 0, 48, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_nduwu"]
-atlas = ExtResource("2_c162e")
-region = Rect2(96, 0, 32, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qu7o2"]
-atlas = ExtResource("2_c162e")
-region = Rect2(128, 0, 32, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_n7d18"]
-atlas = ExtResource("2_c162e")
-region = Rect2(160, 0, 32, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qsvn6"]
-atlas = ExtResource("2_c162e")
-region = Rect2(192, 0, 32, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_324ps"]
+atlas = SubResource("CompressedTexture2D_u5jx3")
+region = Rect2(96, 0, 48, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jjg2a"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0jg16")
+"texture": SubResource("AtlasTexture_r3ux5")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_q4lal")
+"texture": SubResource("AtlasTexture_8hk5f")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2unpv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nduwu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qu7o2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_n7d18")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qsvn6")
+"texture": SubResource("AtlasTexture_324ps")
 }],
 "loop": true,
 "name": &"default",
@@ -70,6 +44,7 @@ script = ExtResource("1_u50h0")
 shape = SubResource("CircleShape2D_h08k7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-rotation = 3.14159
 sprite_frames = SubResource("SpriteFrames_jjg2a")
 autoplay = "default"
+frame_progress = 0.809246
+speed_scale = 2.0

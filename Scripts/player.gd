@@ -22,10 +22,13 @@ func fire_rocket() -> void:
 
 
 func activate_shield():
-	has_shield = true
-	await get_tree().create_timer(2.0).timeout
-	has_shield = false
 	shield_sound.play()
+	has_shield = true
+	modulate = Color(0.5, 1, 1, 0.9)
+	await get_tree().create_timer(5.0).timeout
+	has_shield = false
+	modulate = Color(1, 1, 1, 1)
+
 
 func take_damage(damage: int) -> void:
 	super(damage)
@@ -34,15 +37,16 @@ func take_damage(damage: int) -> void:
 		get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
 	damage_sound.play()
 
+
 func dodge_up() -> void:
 	position = initial_position + Vector2(0, -60)
-	await get_tree().create_timer(2.0).timeout
-	position = initial_position
 	dodge_sound.play()
+	await get_tree().create_timer(4).timeout
+	position = initial_position
 
 
 func dodge_down() -> void:
 	position = initial_position + Vector2(0, 60)
-	await get_tree().create_timer(2.0).timeout
-	position = initial_position
 	dodge_sound.play()
+	await get_tree().create_timer(4).timeout
+	position = initial_position

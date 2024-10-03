@@ -77,9 +77,9 @@ func blink():
 func check_combo():
 	var combo_actions = {
 		['A', 'X', 'A', 'X']: player.fire_rocket,
-		['X', 'A', 'A', 'X']: player.activate_shield,
-		['A', 'A', 'A', 'X']: player.dodge_up,
-		['A', 'A', 'X', 'A']: player.dodge_down
+		['X', 'X', 'Y', 'A']: player.activate_shield,
+		['A', 'A', 'X', 'A']: player.dodge_up,
+		['A', 'A', 'Y', 'B']: player.dodge_down
 	}
 	
 	if queue in combo_actions:
